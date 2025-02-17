@@ -39,6 +39,13 @@ func (s *URLStore) Add(url string) string {
 	return id
 }
 
+// delete url
+func (s *URLStore) Remove(id string) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	delete(s.urls, id)
+}
+
 // get all status
 func (s *URLStore) GetAll() []URLStatus {
 	s.mu.Lock()
